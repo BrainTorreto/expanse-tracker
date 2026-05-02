@@ -16,11 +16,11 @@ Expense Tracker — это графическое приложение для о
 ### Через run.py (рекомендуемый способ):
 ```bash
 python run.py
-
+```
 ### Альтернативный способ:
 ```bash
 python src/main.py
-
+```
 ### 1. Клонирование репозитория
 ```bash
 git clone https://gitlab.com/fritzlerdenis774/finaltest-pythoncurs-fritsler.git
