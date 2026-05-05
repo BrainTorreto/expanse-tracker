@@ -65,11 +65,9 @@ class WeatherDiary:
         table_frame = ttk.Frame(self.root)
         table_frame.pack(fill="both", expand=True, padx=10, pady=5)
         
-        # Скроллбар
         scrollbar = ttk.Scrollbar(table_frame)
         scrollbar.pack(side="right", fill="y")
         
-        # Treeview (таблица)
         columns = ("date", "temperature", "description", "precipitation")
         self.tree = ttk.Treeview(table_frame, columns=columns, show="headings", yscrollcommand=scrollbar.set)
         
@@ -94,7 +92,6 @@ class WeatherDiary:
         ttk.Button(control_frame, text="📂 Загрузить из JSON", command=self.load_from_json).pack(side="left", padx=5)
         ttk.Button(control_frame, text="🗑 Удалить выбранное", command=self.delete_entry).pack(side="left", padx=5)
         
-        # Информация
         self.status_label = ttk.Label(self.root, text=f"Всего записей: {len(self.entries)}", relief="sunken")
         self.status_label.pack(fill="x", padx=10, pady=5)
     
@@ -111,7 +108,6 @@ class WeatherDiary:
         description = self.desc_entry.get()
         precipitation = self.precip_var.get()
         
-        # Валидация
         if not self.validate_date(date):
             messagebox.showerror("Ошибка", "Неверный формат даты! Используйте ГГГГ-ММ-ДД")
             return
@@ -126,7 +122,6 @@ class WeatherDiary:
             messagebox.showerror("Ошибка", "Описание не может быть пустым!")
             return
         
-        # Добавляем запись
         entry = {
             "date": date,
             "temperature": temp_float,
@@ -135,23 +130,20 @@ class WeatherDiary:
         }
         
         self.entries.append(entry)
-        self.entries.sort(key=lambda x: x["date"])  # Сортировка по дате
+        self.entries.sort(key=lambda x: x["date"])
         
-        # Очищаем поля
         self.temp_entry.delete(0, tk.END)
         self.desc_entry.delete(0, tk.END)
         self.precip_var.set(False)
         
         self.update_table()
-        self.save_to_json()  # Автосохранение
+        self.save_to_json()
         messagebox.showinfo("Успех", "Запись добавлена!")
     
     def update_table(self):
-        # Очищаем таблицу
         for item in self.tree.get_children():
             self.tree.delete(item)
         
-        # Показываем отфильтрованные или все записи
         display_entries = self.filtered_entries if self.filtered_entries else self.entries
         
         for entry in display_entries:
@@ -170,14 +162,12 @@ class WeatherDiary:
         
         self.filtered_entries = self.entries.copy()
         
-        # Фильтр по дате
         if filter_date:
             if not self.validate_date(filter_date):
                 messagebox.showerror("Ошибка", "Неверный формат даты в фильтре!")
                 return
             self.filtered_entries = [e for e in self.filtered_entries if e["date"] == filter_date]
         
-        # Фильтр по температуре
         if filter_temp_str:
             try:
                 filter_temp = float(filter_temp_str)
@@ -201,10 +191,8 @@ class WeatherDiary:
             return
         
         if messagebox.askyesno("Подтверждение", "Удалить выбранную запись?"):
-            # Получаем данные из выделенной строки
             values = self.tree.item(selected[0])["values"]
             
-            # Находим и удаляем запись
             for i, entry in enumerate(self.entries):
                 if (entry["date"] == values[0] and 
                     entry["temperature"] == values[1] and 
@@ -245,7 +233,10 @@ class WeatherDiary:
             except:
                 self.entries = []
 
-if __name__ == "__main__":
+def main():
     root = tk.Tk()
     app = WeatherDiary(root)
     root.mainloop()
+
+if __name__ == "__main__":
+    main()

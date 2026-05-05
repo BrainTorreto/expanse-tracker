@@ -3,25 +3,22 @@ __pycache__/
 *.py[cod]
 *.so
 .Python
-
-# Virtual Environment
 venv/
 env/
 ENV/
+*.egg-info/
+dist/
+build/
 
 # IDE
 .vscode/
 .idea/
 *.swp
-*.swo
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Project specific
+# Project
 weather_diary.json
 *.log
-
-# Windows
-desktop.ini
