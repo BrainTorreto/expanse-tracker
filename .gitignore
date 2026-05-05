@@ -1,34 +1,27 @@
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
 *.so
 .Python
-env/
+
+# Virtual Environment
 venv/
+env/
 ENV/
-env.bak/
-venv.bak/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
+
+# OS
+.DS_Store
+Thumbs.db
 
 # Project specific
-data.json
+weather_diary.json
 *.log
-.DS_Store
-.env
 
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Build
-dist/
-build/
-*.egg-info/
+# Windows
+desktop.ini
