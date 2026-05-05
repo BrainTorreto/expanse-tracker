@@ -23,5 +23,5 @@ python src/main.py
 ```
 ### 1. Клонирование репозитория
 ```bash
-git clone https://gitlab.com/fritzlerdenis774/finaltest-pythoncurs-fritsler.git
-cd finaltest-pythoncurs-fritsler.git
+git clone https://github.com/BrainTorreto/expanse-tracker.git
+cd expanse-tracker
